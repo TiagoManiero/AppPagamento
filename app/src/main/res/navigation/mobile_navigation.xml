@@ -29,7 +29,9 @@
             android:id="@+id/navigation_ajuste"
             android:name="com.example.apppicpay.ui.ajuste.AjusteFragment"
             android:label="@string/title_ajuste"
-            tools:layout="@layout/fragment_ajuste"/>
+            tools:layout="@layout/fragment_ajuste">
+        <action android:id="@+id/action_navigation_ajuste_to_loginFragment" app:destination="@id/loginFragment"/>
+    </fragment>
 
     <fragment
             android:id="@+id/loginFragment"
@@ -45,7 +47,7 @@
     <action
             android:id="@+id/action_global_loginFragment"
             app:destination="@id/loginFragment"
-            app:popUpTo="@id/navigation_home"
+            app:popUpTo="@id/mobile_navigation"
             app:popUpToInclusive="true"/>
     <fragment
             android:id="@+id/transacaoFragment"

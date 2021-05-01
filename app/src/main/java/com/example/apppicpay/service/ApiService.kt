@@ -1,13 +1,17 @@
 package com.example.apppicpay.service
 
-import com.example.apppicpay.data.PageTransacao
-import com.example.apppicpay.data.Transacao
-import com.example.apppicpay.data.Usuario
+import com.example.apppicpay.data.*
 import retrofit2.http.*
 
 interface ApiService {
-    @GET("/usuarios/contato/{login}")
-    suspend fun getContatos(@Query("login") login: String): List<Usuario>
+    @POST("/autenticacao")
+    suspend fun autenticar(@Body login: Login): Token
+
+    @GET("/usuarios/contatos")
+    suspend fun getTodosUsuarios(@Query("login") login: String): List<Usuario>
+
+    @GET("/usuarios/{login}")
+    suspend fun getUsuario(@Path("login") login: String): Usuario
 
     @GET("/usuarios/{login}/saldo")
     suspend fun getSaldo(@Path("login") login: String): Usuario

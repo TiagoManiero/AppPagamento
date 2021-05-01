@@ -12,7 +12,9 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.example.apppicpay.R
 import com.example.apppicpay.data.UsuarioLogado
+import com.example.apppicpay.extension.desaparecer
 import com.example.apppicpay.extension.formatarMoeda
+import com.example.apppicpay.extension.mostrar
 import com.example.apppicpay.ui.component.ComponentViewModel
 import com.example.apppicpay.ui.component.Componente
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -36,6 +38,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         if(UsuarioLogado.isNaoLogado()) {
             vaiParaLogin()
+            return
         }
         componentesViewModel.temComponente = Componente(bottomNavigation = true)
         observarSaldo()
@@ -47,11 +50,11 @@ class HomeFragment : Fragment() {
     private fun observarCarregando() {
         homeViewModel.onLoading.observe(viewLifecycleOwner, Observer { isLoading ->
             if (isLoading) {
-                progressBar.visibility = View.VISIBLE
-                recyclerView.visibility = View.GONE
+                progressBar.mostrar()
+                recyclerView.desaparecer()
             } else {
-                progressBar.visibility = View.GONE
-                recyclerView.visibility = View.VISIBLE
+                progressBar.desaparecer()
+                recyclerView.mostrar()
             }
         })
     }

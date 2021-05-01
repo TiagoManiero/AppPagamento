@@ -1,6 +1,7 @@
 package com.example.apppicpay
 
 import android.app.Application
+import com.example.apppicpay.di.repositoryModule
 import com.example.apppicpay.di.serviceModule
 import com.example.apppicpay.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
@@ -11,7 +12,7 @@ class AppAplication: Application() {
         super.onCreate()
         startKoin {
             androidContext(this@AppAplication)
-            modules(viewModelModule, serviceModule)
+            modules(viewModelModule, serviceModule, repositoryModule)
         }
     }
 }
